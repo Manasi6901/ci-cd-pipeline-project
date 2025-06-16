@@ -1,0 +1,17 @@
+- hosts: appserver
+  become: true
+  tasks:
+    - name: Stop existing container
+      shell: docker rm -f flask-app || true
+
+    - name: Copy Docker image tar
+      copy:
+        src: ../flask-app.tar
+        dest: /tmp/flask-app.tar
+
+    - name: Load image on remote server
+      shell: docker load -i /tmp/flask-app.tar
+
+    - name: Run new container
+      shell: docker run -d --name flask-app -p 5000:5000 flask-app
+
