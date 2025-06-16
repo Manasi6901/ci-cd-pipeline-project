@@ -9,7 +9,9 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-                git 'https://github.com/Manasi6901/ci-cd-pipeline-project.git'
+               // git 'https://github.com/Manasi6901/ci-cd-pipeline-project.git'
+               sh 'ls -l'
+                
             }
         }
 
